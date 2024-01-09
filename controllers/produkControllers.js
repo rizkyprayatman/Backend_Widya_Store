@@ -87,8 +87,35 @@ const deleteProduct = async (req, res, next) => {
     }
 };
 
+const getAllProductById = async (req, res, next) => {
+    const checkToken = getToken(req.headers["authorization"], res);
+
+    try {
+        const isUser = await User.findOne({
+            where: { id: checkToken.id },
+        });
+
+        if (isUser == null) {
+            res.status(401).json({ message: "User not found. Please register!" });
+            return;
+        }
+
+        const productsById = await Products.findAll({
+            where: { userId: checkToken.id },
+        });
+
+        res.status(200).json({
+            message: "All Your Product",
+            data: productsById
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
 module.exports = {
     postProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getAllProductById
 };

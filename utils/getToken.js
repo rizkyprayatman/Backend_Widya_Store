@@ -1,6 +1,6 @@
 const jwt = require("../utils/jwt");
 
-const getToken = (headers) => {
+const getToken = (headers, res) => {
     const authHeader = headers;
 
     if (!authHeader) {
@@ -20,7 +20,7 @@ const getToken = (headers) => {
         res.status(401).json({ message: "Token Invalid!" });
         return;
     }
-    
+
     return checkToken;
 };
 
