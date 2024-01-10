@@ -3,7 +3,7 @@ const { postProduct, updateProduct, deleteProduct, getAllProductById } = require
 
 const router = express.Router();
 
-router.post("/store", postProduct);
+router.post("/add", postProduct);
 router.put("/update/:id", updateProduct);
 router.delete("/delete/:id", deleteProduct);
 router.get("/me", getAllProductById);

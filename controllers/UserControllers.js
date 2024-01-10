@@ -34,7 +34,7 @@ const register = async (req, res, next) => {
         await ProfileUser.create(profileUser);
 
         res.status(201).json({
-            message: "Registrasi Success, Please check your email!",
+            message: "Registrasi Success!",
         });
     } catch (error) {
         next(error);
